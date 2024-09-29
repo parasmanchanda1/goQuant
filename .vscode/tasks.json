@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++11",
+                "-I/opt/homebrew/opt/openssl/include",
+                "-I/opt/homebrew/opt/curl/include",
+                "-I/opt/homebrew/opt/jsoncpp/include",
+                "-L/opt/homebrew/opt/openssl/lib",
+                "-L/opt/homebrew/opt/curl/lib",
+                "-L/opt/homebrew/opt/jsoncpp/lib",
+                "-lcurl",
+                "-lssl",
+                "-lcrypto",
+                "-ljsoncpp",
+                "-o",
+                "${workspaceFolder}/main",
+                "${workspaceFolder}/main.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "${workspaceFolder}/main",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "dependsOn": "build"
+        }
+    ]
+}
